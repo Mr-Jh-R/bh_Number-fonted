@@ -13,7 +13,7 @@
         <a-menu
           v-model:selectedKeys="current"
           mode="horizontal"
-          :items="items"
+          :items="filteredItems"
           @click="doMenuClick"
         />
       </a-col>
@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-import { h, ref } from 'vue'
+import { computed, h, ref } from "vue";
 import { HomeOutlined, LogoutOutlined } from '@ant-design/icons-vue'
 import { MenuProps, message } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
@@ -69,6 +69,18 @@ const items = ref<MenuProps['items']>([
     key: '/admin/userManage',
     label: '用户管理',
     title: '用户管理',
+    requiresAdmin: true,
+  },
+  {
+    key: '/admin/pictureManage',
+    label: '图片管理',
+    title: '图片管理',
+    requiresAdmin: true,
+  },
+  {
+    key: '/add_picture',
+    label: '创建图片',
+    title: '创建图片',
   },
   {
     key: 'others',
@@ -76,7 +88,10 @@ const items = ref<MenuProps['items']>([
     title: '导航',
   },
 ])
-
+const filteredItems = computed(() => {
+  const isAdmin = loginUserStore.loginUser.userRole === 'admin'
+  return items.value.filter(item => !item.requiresAdmin || isAdmin)
+})
 const doLogout = async () => {
   const res = await userLogoutUsingPost()
   if (res.data.code === 0) {
