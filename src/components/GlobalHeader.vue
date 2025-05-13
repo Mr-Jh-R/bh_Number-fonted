@@ -5,7 +5,7 @@
         <router-link to="/">
           <div class="title-bar">
             <img class="logo" src="../assets/logo.jpg" alt="logo" />
-            <div class="title">云图库</div>
+            <div class="title">BH库存</div>
           </div>
         </router-link>
       </a-col>

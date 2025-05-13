@@ -1,7 +1,7 @@
 <template>
   <div id="userLoginPage">
-    <h2 class="title">云图库 - 用户登录</h2>
-    <div class="desc">企业级智能协同云图库</div>
+    <h2 class="title">BH库存 - 用户登录</h2>
+    <div class="desc">致敬那些活着的人</div>
     <a-form :model="formState" name="basic" autocomplete="off" @finish="handleSubmit">
       <a-form-item name="userAccount" :rules="[{ required: true, message: '请输入账号' }]">
         <a-input v-model:value="formState.userAccount" placeholder="请输入账号" />
@@ -49,10 +49,10 @@ const handleSubmit = async (value: any) => {
       path: '/',
       replace: true,
     })
+  } else {
+    message.error('登录失败，' + res.data.message)
   }
 }
-
-
 
 const formState = reactive<API.UserLoginRequest>({
   userAccount: '',
