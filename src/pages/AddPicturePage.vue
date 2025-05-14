@@ -1,10 +1,9 @@
 <template>
   <div id="addPicturePage">
-    <h2 style="margin-bottom: 16px">{{ route.query?.id ? "修改图片" : "创建图片" }}</h2>
+    <h2 style="margin-bottom: 16px">{{ route.query?.id ? "修改库存" : "创建库存" }}</h2>
     <PictureUpload :picture="picture" :onSuccess="onSuccess" />
     <!--    图片信息表单-->
     <a-form
-      v-if="picture"
       class="select"
       layout="vertical"
       :model="pictureForm"
@@ -12,6 +11,12 @@
     >
       <a-form-item label="名称" name="name">
         <a-input v-model:value="pictureForm.name" placeholder="请输入名称" allow-clear />
+      </a-form-item>
+      <a-form-item label="金额" name="name">
+        <a-input v-model:value="pictureForm.name" placeholder="请输入金额" allow-clear />
+      </a-form-item>
+      <a-form-item label="数量" name="name">
+        <a-input v-model:value="pictureForm.name" placeholder="请输入数量" allow-clear />
       </a-form-item>
       <a-form-item label="简介" name="introduction">
         <a-textarea
@@ -57,9 +62,11 @@ import {
 } from "@/api/pictureController.ts";
 import { message } from 'ant-design-vue'
 import { useRoute, useRouter } from 'vue-router'
+import { listProductTagCategoryUsingGet } from "@/api/productController.ts";
 
 const picture = ref<API.PictureVO>()
 const pictureForm = reactive<API.PictureEditRequest>({})
+const productForm = reactive<API.>({})
 const onSuccess = (newPicture: API.PictureVO) => {
   picture.value = newPicture
   pictureForm.name = newPicture.name
@@ -86,7 +93,7 @@ const categoryOptions = ref<string[]>([])
 const tagOptions = ref<string[]>([])
 
 const getTagCategoryOptions = async () => {
-  const res = await listPictureTagCategoryUsingGet({})
+  const res = await listProductTagCategoryUsingGet({})
   if (res.data.code === 0 && res.data.data) {
     categoryOptions.value = (res.data.data.categoryList ?? []).map((data: string) => {
       return {

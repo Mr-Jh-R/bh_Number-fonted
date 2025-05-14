@@ -29,6 +29,18 @@ declare namespace API {
     message?: string
   }
 
+  type BaseResponsePageProduct_ = {
+    code?: number
+    data?: PageProduct_
+    message?: string
+  }
+
+  type BaseResponsePageProductVO_ = {
+    code?: number
+    data?: PageProductVO_
+    message?: string
+  }
+
   type BaseResponsePageUserVO_ = {
     code?: number
     data?: PageUserVO_
@@ -50,6 +62,18 @@ declare namespace API {
   type BaseResponsePictureVO_ = {
     code?: number
     data?: PictureVO
+    message?: string
+  }
+
+  type BaseResponseProduct_ = {
+    code?: number
+    data?: Product
+    message?: string
+  }
+
+  type BaseResponseProductVO_ = {
+    code?: number
+    data?: ProductVO
     message?: string
   }
 
@@ -81,6 +105,16 @@ declare namespace API {
   }
 
   type getPictureVOByIdUsingGETParams = {
+    /** id */
+    id?: number
+  }
+
+  type getProductByIdUsingGETParams = {
+    /** id */
+    id?: number
+  }
+
+  type getProductVOByIdUsingGETParams = {
     /** id */
     id?: number
   }
@@ -119,6 +153,22 @@ declare namespace API {
     current?: number
     pages?: number
     records?: PictureVO[]
+    size?: number
+    total?: number
+  }
+
+  type PageProduct_ = {
+    current?: number
+    pages?: number
+    records?: Product[]
+    size?: number
+    total?: number
+  }
+
+  type PageProductVO_ = {
+    current?: number
+    pages?: number
+    records?: ProductVO[]
     size?: number
     total?: number
   }
@@ -209,6 +259,83 @@ declare namespace API {
     userId?: number
   }
 
+  type Product = {
+    category?: string
+    createTime?: string
+    editTime?: string
+    id?: number
+    introduction?: string
+    isDelete?: number
+    monovalent?: number
+    name?: string
+    pictureId?: number
+    productNumber?: number
+    tags?: string
+    updateTime?: string
+    url?: string
+    userId?: number
+    userName?: string
+  }
+
+  type ProductEditRequest = {
+    category?: string
+    id?: number
+    introduction?: string
+    monovalent?: number
+    name?: string
+    pictureId?: number
+    productNumber?: number
+    tags?: string[]
+    userName?: string
+  }
+
+  type ProductQueryRequest = {
+    category?: string
+    current?: number
+    id?: number
+    introduction?: string
+    monovalent?: number
+    name?: string
+    pageSize?: number
+    pictureId?: number
+    productNumber?: number
+    searchText?: string
+    sortField?: string
+    sortOrder?: string
+    tags?: string[]
+    userId?: number
+    userName?: string
+  }
+
+  type ProductUpdateRequest = {
+    category?: string
+    id?: number
+    introduction?: string
+    monovalent?: number
+    name?: string
+    pictureId?: number
+    productNumber?: number
+    tags?: string[]
+    userName?: string
+  }
+
+  type ProductVO = {
+    category?: string
+    createTime?: string
+    editTime?: string
+    id?: number
+    introduction?: string
+    monovalent?: number
+    name?: string
+    productNumber?: number
+    tags?: string[]
+    updateTime?: string
+    url?: string
+    user?: UserVO
+    userId?: number
+    userName?: string
+  }
+
   type testDownloadFileUsingGETParams = {
     /** filepath */
     filepath?: string
@@ -216,6 +343,19 @@ declare namespace API {
 
   type uploadPictureUsingPOSTParams = {
     id?: number
+  }
+
+  type uploadProductUsingPOSTParams = {
+    category?: string
+    id?: number
+    id?: number
+    introduction?: string
+    monovalent?: number
+    name?: string
+    pictureId?: number
+    productNumber?: number
+    tags?: string[]
+    userName?: string
   }
 
   type User = {

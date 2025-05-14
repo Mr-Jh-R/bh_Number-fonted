@@ -1,8 +1,12 @@
 <template>
-  <div id="userManagePage">
+  <div id="productManagePage">
     <a-form class="select" layout="inline" :model="searchParams" @finish="doSearch">
       <a-form-item label="关键词">
-        <a-input v-model:value="searchParams.searchText" placeholder="从名称和简介中搜索" allow-clear />
+        <a-input
+          v-model:value="searchParams.searchText"
+          placeholder="从名称和简介中搜索"
+          allow-clear
+        />
       </a-form-item>
       <a-form-item label="类型">
         <a-input v-model:value="searchParams.category" placeholder="输入类型" allow-clear />
@@ -14,9 +18,8 @@
           placeholder="请输入标签"
           style="width: 200px"
           allow-clear
-
         />
-<!--        <a-input v-model:value="searchParams.tags" placeholder="输入标签" allow-clear />-->
+        <!--        <a-input v-model:value="searchParams.tags" placeholder="输入标签" allow-clear />-->
       </a-form-item>
 
       <a-form-item>
@@ -53,7 +56,9 @@
           {{ dayjs(record.createTime).format('YYYY-MM-DD HH:mm:ss') }}
         </template>
         <template v-else-if="column.key === 'action'">
-          <a-button type="primary" :href="`/add_picture?id=${record.id}`" target="_blank" >编辑</a-button>
+          <a-button type="primary" :href="`/add_picture?id=${record.id}`" target="_blank"
+            >编辑</a-button
+          >
           <a-button danger @click="doDelete(record.id)">删除</a-button>
         </template>
       </template>
@@ -69,8 +74,8 @@ import dayjs from 'dayjs'
 import {
   deletePictureUsingPost,
   listPictureByPageUsingPost,
-  listPictureVoByPageUsingPost
-} from "@/api/pictureController.ts";
+  listPictureVoByPageUsingPost,
+} from '@/api/pictureController.ts'
 
 const columns = [
   {
@@ -100,14 +105,14 @@ const columns = [
     dataIndex: 'tags',
   },
   {
-    title: '图片信息',
-    dataIndex: 'picInfo',
+    title: '价格',
+    dataIndex: 'monovalent',
   },
   {
-    title: '用户 id',
-    dataIndex: 'userId',
-    width: 80,
+    title: '数量',
+    dataIndex: 'productNumber',
   },
+
   {
     title: '创建时间',
     dataIndex: 'createTime',
@@ -121,7 +126,6 @@ const columns = [
     key: 'action',
   },
 ]
-
 
 const dataList = ref([])
 const total = ref(0)
@@ -182,13 +186,15 @@ const doDelete = async (id: string) => {
   }
 }
 
-
 onMounted(() => {
   fetchData()
 })
 </script>
 
 <style scoped>
+#productManagePage {
+}
+
 .select {
   margin-bottom: 16px;
 }

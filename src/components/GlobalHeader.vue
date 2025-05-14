@@ -72,15 +72,16 @@ const items = ref<MenuProps['items']>([
     requiresAdmin: true,
   },
   {
-    key: '/admin/pictureManage',
-    label: '图片管理',
-    title: '图片管理',
+    key: '/admin/productManage',
+    label: '库存管理',
+    title: '库存管理',
     requiresAdmin: true,
   },
   {
     key: '/add_picture',
-    label: '创建图片',
-    title: '创建图片',
+    label: '创建库存',
+    title: '创建库存',
+    requiresAdmin: true,
   },
   {
     key: 'others',
